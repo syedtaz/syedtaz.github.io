@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>(knife)2</title>
-    <link>http://syedtaz.github.io/</link>
+    <link>https://syedtaz.github.io/</link>
     <description>Recent content on (knife)2</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://syedtaz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://syedtaz.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
-      <link>http://syedtaz.github.io/about/</link>
+      <link>https://syedtaz.github.io/about/</link>
       <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://syedtaz.github.io/about/</guid>
+      <guid>https://syedtaz.github.io/about/</guid>
       <description>Hi! My name is Tazmilur Saad and I am currently a junior at Colgate University, where I mostly study computer science and applied mathematics with some Japanese stuffed in between. I am an international student from Bangladesh where I grew up playing a lot of video games, fiddling around with computers and listening to punk and progressive rock. Since then I have diversified into lo-fi citypop and machine learning, and nowadays I spend most of my time working as an undergraduate research assistant answering questions in computational biology with a heavy focus on statistics, distributed computing and optimizing for large scale problems.</description>
     </item>
     
