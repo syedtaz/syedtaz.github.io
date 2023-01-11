@@ -14,3 +14,13 @@ function lx_baz(com, _)
   # do whatever you want here
   return uppercase(brace_content)
 end
+
+function hfun_snum(id)
+  label = "<label for=\"sn-$(id[1])\" class=\"margin-toggle sidenote-number\"></label>"
+  checkbox = "<input type=\"checkbox\" id=\"sn-$(id[1])\" class=\"margin-toggle\"/>"
+  return label * checkbox
+end
+
+function hfun_sn(note)
+  return 
+end
