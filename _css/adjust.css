@@ -6,6 +6,22 @@
 
 .franklin-content { font-size: 1.4rem; }
 
+#main h1 a {
+  text-decoration: none;
+}
+
+#main h2 a {
+  text-decoration: none;
+}
+
+#main h3 a {
+  text-decoration: none;
+}
+
+#main h4 a {
+  text-decoration: none;
+}
+
 #main a {
   text-decoration: underline;
 }
