@@ -1,7 +1,7 @@
 @def title = "til :: tazmilur saad"
 @def tags = ["til", "blog"]
 
-# Today I learned?
+# today I learned?
 
 @@epigraph
     @@blockquote
@@ -41,3 +41,5 @@ both OCaml and Rust.
 I was also interested in the Unix filesystem so I looked through how file tables were organized -- looks like it's linked lists all the way down. I read the paper (?) that lays the groundwork for the *kqueue(2)* event notification system.{{snum kqueue-paper}} Finally, I dabbled a little bit into using ARM assembly to make syscalls. It didn't work! (*μ_μ) \sidenote{"Kqueue: A generic and scalable event notification facility", <em>Jonathan Lemon</em>}
 
 **[11]** Had to go through the guts of Franklin.jl to get most of this site working. Who doesn't like digging into CSS?
+
+**[12]** Worked through the *stacker* and *funstacker* implementations of a simple stack calculator in Racket -- courtesy of Beautiful Racket.{{snum br}} \sidenote{"Beautiful Racket", <em>Matthew Butt­erick</em>}

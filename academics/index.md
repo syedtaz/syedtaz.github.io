@@ -1,12 +1,12 @@
 @def title = "academics :: tazmilur saad"
 @def tags = ["talk", "workshop", "papers", "publications"]
 
-### Publications
+### publications
 
 @@marginnote My first paper!@@
 - V. Tran, **T. Saad**, M. Tesfaye, S. Walelign, M. Wordofa, D. Abera, K. Desta, A. Tsegaye, A. Ay, and B. Taye, “Helicobacter&nbsp;pylori&nbsp;(H. pylori) risk factor analysis and prevalence prediction: A machine learning-based approach,” BMC Infectious Diseases, vol. 22, no. 1, 2022.  
 
-### Workshops
+### workshops
 
 I gave the following workshops at the Colgate Technology Immersion Week 2022:
 
