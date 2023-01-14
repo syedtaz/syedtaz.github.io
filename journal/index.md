@@ -43,3 +43,5 @@ I was also interested in the Unix filesystem so I looked through how file tables
 **[11]** Had to go through the guts of Franklin.jl to get most of this site working. Who doesn't like digging into CSS?
 
 **[12]** Worked through the *stacker* and *funstacker* implementations of a simple stack calculator in Racket -- courtesy of Beautiful Racket.{{snum br}} \sidenote{"Beautiful Racket", <em>Matthew Butt­erick</em>}
+
+**[13]** Happy Colgate Day! I did not learn anything substantial today :)
