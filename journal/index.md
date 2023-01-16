@@ -45,3 +45,7 @@ I was also interested in the Unix filesystem so I looked through how file tables
 **[12]** Worked through the *stacker* and *funstacker* implementations of a simple stack calculator in Racket -- courtesy of Beautiful Racket.{{snum br}} \sidenote{"Beautiful Racket", <em>Matthew Butt­erick</em>}
 
 **[13]** Happy Colgate Day! I did not learn anything substantial today :)
+
+**[14]** I solved all of the exercises of **I**-1.5 from Apostol's *Calculus*.
+
+**[15]** Solved some problems from **I**-4.4 and **I**-4.7
