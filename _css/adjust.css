@@ -8,6 +8,8 @@
 
 #main h1 a {
   text-decoration: none;
+  /* text-transform: uppercase; */
+  /* font-family: "Palatino"; */
 }
 
 #main h2 a {

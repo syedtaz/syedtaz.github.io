@@ -1,7 +1,7 @@
 @def title = "til :: tazmilur saad"
 @def tags = ["til", "blog"]
 
-# today I learned?
+# today I learned
 
 @@epigraph
     @@blockquote
@@ -25,6 +25,8 @@ at myself for getting distracted. Everything here has been cultivated for my own
 ## 2023
 
 ### January
+
+**[20]** Finished the *jsonic* and *wires* language implementation in Racket.
 
 **[15]** Solved some problems from **I**-4.4 and **I**-4.7 mostly about induction and summation properties.
 
