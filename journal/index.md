@@ -18,13 +18,13 @@
 Like most people, I learn a little bit of something everyday. More often than not, these tend to be from a hodgepodge of sources that range from elegant computation theory to arcane shell wizardry. I thought that if I documented whatever my bouts of procrastination produced I would feel a little less annoyed
 at myself for getting distracted. Everything here has been cultivated for my own pleasure, outside of working hours. Hope you find something interesting!
 
-<!-- █▁▁▁▁▁▁▁▁▁ 10% -->
-
 \newcommand{\sidenote}[1]{~~~<span class="sidenote">#1</span>~~~}
 
 ## 2023
 
 ### January
+
+**[21]** Got around to setting up (Doom) Emacs. I've been using a combination of `neovim` and `vscode` for the past year so I'll see if racket-mode is worth it.
 
 **[20]** Finished the *jsonic* and *wires* language implementation in Racket.
 
