@@ -24,6 +24,8 @@ at myself for getting distracted. Everything here has been cultivated for my own
 
 ### January
 
+**[22]** Worked on the parser for $\mathcal{L}$.
+
 **[21]** Got around to setting up (Doom) Emacs. I've been using a combination of `neovim` and `vscode` for the past year so I'll see if racket-mode is worth it.
 
 **[20]** Finished the *jsonic* and *wires* language implementation in Racket.
