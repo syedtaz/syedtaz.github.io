@@ -4,7 +4,9 @@
 ### publications
 
 @@marginnote My first paper!@@
-- V. Tran, **T. Saad**, M. Tesfaye, S. Walelign, M. Wordofa, D. Abera, K. Desta, A. Tsegaye, A. Ay, and B. Taye, “Helicobacter&nbsp;pylori&nbsp;(H. pylori) risk factor analysis and prevalence prediction: A machine learning-based approach,” BMC Infectious Diseases, vol. 22, no. 1, 2022.  
+- V. Tran, **T. Saad**, M. Tesfaye, S. Walelign, M. Wordofa, D. Abera, K. Desta, A. Tsegaye, A. Ay, and B. Taye, “Helicobacter&nbsp;pylori&nbsp;(H. pylori) risk factor analysis and prevalence prediction: A machine learning-based approach,” BMC Infectious Diseases, vol. 22, no. 1, 2022.
+
+- Dang, Thanh, William A. Russel, **Tazmilur Saad**, Luvna Dhawka, Ahmet Ay, and Krista K. Ingram. “Risk for Seasonal Affective Disorder (SAD) Linked to Circadian Clock Gene Variants.” Biology 12, no. 12, 2023.
 
 ### workshops
 
