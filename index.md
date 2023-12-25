@@ -1,10 +1,10 @@
 @def title = "about :: tazmilur saad"
 @def tags = ["home"]
 
-@@img-small ![my-face](/assets/face.png) @@
+@@img-small ![my-face](/assets/face2.png) @@
 
 My name is Tazmilur Saad -- most people call me Taz, for short. I went to Colgate University where I studied computer
-science and applied mathematics. I am currently a software engineer in the financial industry at Barclays. 
+science and applied mathematics. I am currently a software engineer in the financial industry at Barclays.
 
 Previously, I was also a research assistant with the Colgate biology department focusing on statistical analysis and stochastic kinetic simulation, although my current research aspirations have migrated towards programming language theory.
 

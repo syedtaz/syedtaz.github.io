@@ -54,16 +54,16 @@ html {
 ================================================================== */
 
 .franklin-content .page-foot a {
-  color: black;
+  /* color: black; */
 }
 
 .page-foot {
   font-size: 60%;
   font-family: monospace;
-  color: black;
+  /* color: black; */
   text-align: center;
   margin-top: 3em;
-  border-top: 1px solid black;
+  border-top: 1px solid #FEDFB3;
   padding-top: 1em;
   margin-bottom: 4em;
 }
