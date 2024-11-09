@@ -1,6 +1,6 @@
 open Yocaml
 
-let destination = "_site"
+let destination = "docs"
 
 let task =
   process_files [ "pages/" ] (with_extension "html") (fun file ->
