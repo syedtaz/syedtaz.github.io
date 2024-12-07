@@ -132,6 +132,23 @@ end
   they are in the flesh.
 </p>
 
+<pre><code class="language-ocaml">
+let remove_toys (_proof : Proof.t) (p : perpetrator) = remove (find_room p)
+
+(*  Proof.t has no constructor and you can't convince the compiler
+    that it has a case called Exists. Doesn't work! *)
+let () = remove_toys Proof.Exists "Jamie"
+
+(*  But if I follow the treaded path and create a proper proof value, then I
+    can proceed. *)
+let () =
+  let t = Elf Eyewintess in
+  let po = Proof.guilty person in
+  match po with
+    | Some p -> remove_toys p "Jamie"
+    | None -> Format.printf "not guilty!\n"
+</code></pre>
+
 <p>
   But the fact that you cannot peer into the module and see how it works is precisely
   that which prevents you from creating fake testimonies and bypassing the safeguards
