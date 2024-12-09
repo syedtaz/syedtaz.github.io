@@ -124,8 +124,8 @@ end
 <p>
   When you use this module, all you know is that there exists some type <code>t</code>
   and that there is a function that constructs <code>t options</code> from testimonies called
-  <code>guilty</code>. When you write this module you associate this "existence"
-  with a concrete value, but as a user you have no more information. Now, functions
+  <code>guilty</code>. When you implement this module you associate this "existence"
+  with a concrete value, but as a user you can't access this information. Now, functions
   that accept this <code>Proof.t</code> don't actually care about the internals
   of the value but the fact that you can produce one &mdash; in a similar vein
   to how you did not care about how I brought an elf to our meeting, only that
@@ -133,10 +133,11 @@ end
 </p>
 
 <pre><code class="language-ocaml">
+(* This function now requires you to present a Proof.t value when you call it. *)
 let remove_toys (_proof : Proof.t) (p : perpetrator) = remove (find_room p)
 
 (*  Proof.t has no constructor and you can't convince the compiler
-    that it has a case called Exists. Doesn't work! *)
+    that it has a case called Exists. Backdoor doesn't work! *)
 let () = remove_toys Proof.Exists "Jamie"
 
 (*  But if I follow the treaded path and create a proper proof value, then I
@@ -150,10 +151,21 @@ let () =
 </code></pre>
 
 <p>
-  But the fact that you cannot peer into the module and see how it works is precisely
+  The fact that you cannot peer into the module and see how it works is precisely
   that which prevents you from creating fake testimonies and bypassing the safeguards
   that you put in place to begin with. Most importantly, you can rest assured
   within the body of the function that the suspect is guilty and go ham!
+</p>
+
+<p>
+  In summary,
+  <ol>
+    <li>There is an operation that should only be performed under certain conditions.</li>
+    <li>You define a structure that can only be minted by verifying these conditions.</li>
+    <li>The operation takes this structure as a required parameter so you statically
+      ensure you never call this function without verification.
+    </li>
+  </ol>
 </p>
 
 <h3>(*** References ***)</h3>
