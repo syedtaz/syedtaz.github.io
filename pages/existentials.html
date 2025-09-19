@@ -1,54 +1,57 @@
 <title>posts :: kangaroo courts & existential packing</title>
 <main>
-<h1>(* Kangaroo Courts & Existential Packing *)</h1>
+  <h1>(* Kangaroo Courts & Existential Packing *)</h1>
 
-<p>
-  As a reasonable adult, you probably don't believe in elves. What's a surefire
-   way of convincing you that elves are real? If I walked up to you &mdash;
-   squiggly creatures in hand and no deceitful contraption in sight &mdash; would
-  that be enough? <sup>1</sup> <span class="aside"><sup>1</sup> Proof by construction.</span>
-</p>
+  <p>
+    As a reasonable adult, you probably don't believe in elves. What's a surefire
+    way of convincing you that elves are real? If I walked up to you &mdash;
+    squiggly creatures in hand and no deceitful contraption in sight &mdash; would
+    that be enough? <sup>1</sup> <span class="aside"><sup>1</sup> Proof by construction.</span>
+  </p>
 
-<span class="aside">This post is meant to be an accessible rehash of &sect;2.1 of Will Crichton's paper "Typed Design Patterns for the Functional Era". I urge you to read that paper for more typed patterns :)</span>
+  <span class="aside">This post is meant to be an accessible rehash of &sect;2.1 of Will Crichton's paper "Typed Design
+    Patterns for the Functional Era". I urge you to read that paper for more typed patterns :)</span>
 
-<p>
-  Assume for a moment that elves are real and they are magical creatures
-  that always tell the truth. Philosophical conundrums notwithstanding, it means
-  that if you were unlucky enough to be spotted by an elf while you were stealing
-  cookies you are going straight to jail.
-</p>
+  <p>
+    Assume for a moment that elves are real and they are magical creatures
+    that always tell the truth. Philosophical conundrums notwithstanding, it means
+    that if you were unlucky enough to be spotted by an elf while you were stealing
+    cookies you are going straight to jail.
+  </p>
 
-<p>Let's code up such a system! In this hypothetical world, there are only a few kinds of testimonies that anyone can establish: they saw or heard you in the act; they can vouch for your character or they have you on camera.
-<sup>2</sup>
-</p>
+  <p>Let's code up such a system! In this hypothetical world, there are only a few kinds of testimonies that anyone can
+    establish: they saw or heard you in the act; they can vouch for your character or they have you on camera.
+    <sup>2</sup>
+  </p>
 
-<span class="aside">
-  <sup>2</sup> If you don't know OCaml syntax, this means that an evidence is a value with
-  three possible cases and the <code>'a</code> parameter refers to the type of any data that
-  each case may contain. You can look up <em>sum types</em>.
-</span>
-<pre><code class="language-ocaml">
+  <span class="aside">
+    <sup>2</sup> If you don't know OCaml syntax, this means that an evidence is a value with
+    three possible cases and the <code>'a</code> parameter refers to the type of any data that
+    each case may contain. You can look up <em>sum types</em>.
+  </span>
+  <pre><code class="language-ocaml">
 type 'a evidence =
   | Eyewitness
   | Character of bool
   | Video of Bytes.t
 </code></pre>
 
-<p>Now, all testimonies are not created equal. We know that the word of an elf is infallible.</p>
+  <p>Now, all testimonies are not created equal. We know that the word of an elf is infallible.</p>
 
-<pre><code class="language-ocaml">
+  <pre><code class="language-ocaml">
 type 'a testimony =
   | Human of 'a evidence
   | Elf of 'a evidence
 </code></pre>
 
-<p>
-  Armed with these two types and a deus ex machina that determines whether the video evidence is legit or not, we can construct a function to determine if you are absolutely guilty. <sup>3</sup>
-</p>
+  <p>
+    Armed with these two types and a deus ex machina that determines whether the video evidence is legit or not, we can
+    construct a function to determine if you are absolutely guilty. <sup>3</sup>
+  </p>
 
-<span class="aside"><sup>3</sup> If you don't know OCaml syntax, we are pattern
-matching on the structure of a testimony and defining what to do in each case.</span>
-<pre><code class="language-ocaml">
+  <span class="aside"><sup>3</sup> If you don't know OCaml syntax, we are pattern
+    matching on the structure of a testimony and defining what to do in each case.</span>
+  <pre><code class="language-ocaml">
 let guilty : 'a testimony -> bool =
   fun w -> match w with
   | Human (Character _) | Elf (Character _) -> false
@@ -59,26 +62,33 @@ let guilty : 'a testimony -> bool =
 
 
 
-<p>
-  The process of jailing someone for sugary crimes is a messy business though. You might have dozens of functions that go through the necessary bureaucracy and you need to make sure at every step of the way that you have the right person.<sup>4</sup> For example, you might want to remove the toys from their rooms ...
-</p>
-<span class="aside"><sup>4</sup> Or else, you might relive my childhood nightmare
-"I'm not Martin" by R.L Stine.</span>
+  <p>
+    The process of jailing someone for sugary crimes is a messy business though. You might have dozens of functions that
+    go through the necessary bureaucracy and you need to make sure at every step of the way that you have the right
+    person.<sup>4</sup> For example, you might want to remove the toys from their rooms ...
+  </p>
+  <span class="aside"><sup>4</sup> Or else, you might relive my childhood nightmare
+    "I'm not Martin" by R.L Stine.</span>
 
-<pre><code class="language-ocaml">
+  <pre><code class="language-ocaml">
 let remove_toys (p : perpetrator) = remove (find_room p)
 </code></pre>
 
-<p>
-  But this function does not check if our perpetrator is actually guilty. You can imagine a scheming sibling backdooring the judicial process by calling this function willy-nilly. Or more realistically, you make a mistake while you're coding up your system and forget to check some invariant. Maybe it's expensive to verify the invariants constantly, yet you still want to statically ensure that you do not call the wrong code at the wrong time.
-</p>
+  <p>
+    But this function does not check if our perpetrator is actually guilty. You can imagine a scheming sibling
+    backdooring the judicial process by calling this function willy-nilly. Or more realistically, you make a mistake
+    while you're coding up your system and forget to check some invariant. Maybe it's expensive to verify the invariants
+    constantly, yet you still want to statically ensure that you do not call the wrong code at the wrong time.
+  </p>
 
-<p>
-  In which case, let's reframe these functions and pretend that they are skeptical &mdash; they don't believe that the person is guilty, but you can convince them by presenting undeniable proof. So, let's modify our functions ... <sup>5</sup>
-</p>
+  <p>
+    In which case, let's reframe these functions and pretend that they are skeptical &mdash; they don't believe that the
+    person is guilty, but you can convince them by presenting undeniable proof. So, let's modify our functions ...
+    <sup>5</sup>
+  </p>
 
-<span class="aside"><sup>5</sup> <code>proof</code> is a type with a single case.</span>
-<pre><code class="language-ocaml">
+  <span class="aside"><sup>5</sup> <code>proof</code> is a type with a single case.</span>
+  <pre><code class="language-ocaml">
 type proof = Exists
 
 let guilty : 'a testimony -> proof option =
@@ -92,11 +102,12 @@ let guilty : 'a testimony -> proof option =
 let remove_toys (_proof : proof) (p : perpetrator) = remove (find_room p)
 </code></pre>
 
-<p>
-  Our incarceration apparatus now requires a <code>proof</code> value to be supplied and the only way to get a <code>proof</code> is to call our guilty function.
-</p>
+  <p>
+    Our incarceration apparatus now requires a <code>proof</code> value to be supplied and the only way to get a
+    <code>proof</code> is to call our guilty function.
+  </p>
 
-<pre><code class="language-ocaml">
+  <pre><code class="language-ocaml">
 let w = Elf Eyewitness
 
 (* Ideally ... *)
@@ -105,19 +116,21 @@ let () = match (guilty w) with
   | None -> release ()
 </code></pre>
 
-<p>Except we can always just use an escape hatch and call the function directly, haha!</p>
+  <p>Except we can always just use an escape hatch and call the function directly, haha!</p>
 
-<pre><code class="language-ocaml">
+  <pre><code class="language-ocaml">
 let () = remove_toys Exists "Jamie"
 </code></pre>
 
-<p>
-  The problem here is that we have more information than we are supposed to. We know that our functions are gatekept by this <code>proof</code> type and we know how to construct one directly. The solution is to keep this information away, or keep it abstract as they say, by wrapping it in a module and specifying its signature.<sup>6</sup>
-</p>
+  <p>
+    The problem here is that we have more information than we are supposed to. We know that our functions are gatekept
+    by this <code>proof</code> type and we know how to construct one directly. The solution is to keep this information
+    away, or keep it abstract as they say, by wrapping it in a module and specifying its signature.<sup>6</sup>
+  </p>
 
-<span class="aside"><sup>6</sup> The <code>sig</code> part defines the interface
-of the module and the <code>struct</code> part is the implementation.</span>
-<pre><code class="language-ocaml">
+  <span class="aside"><sup>6</sup> The <code>sig</code> part defines the interface
+    of the module and the <code>struct</code> part is the implementation.</span>
+  <pre><code class="language-ocaml">
 module Proof : sig
   type t
 
@@ -135,18 +148,18 @@ end = struct
 end
 </code></pre>
 
-<p>
-  When you use this module, all you know is that there exists some type <code>t</code>
-  and that there is a function that constructs <code>t options</code> from testimonies called
-  <code>guilty</code>. When you implement this module you associate this "existence"
-  with a concrete value, but as a user you can't access this information. Now, functions
-  that accept this <code>Proof.t</code> don't actually care about the internals
-  of the value but the fact that you can produce one &mdash; in a similar vein
-  to how you did not care about how I brought an elf to our meeting, only that
-  they are in the flesh.
-</p>
+  <p>
+    When you use this module, all you know is that there exists some type <code>t</code>
+    and that there is a function that constructs <code>t options</code> from testimonies called
+    <code>guilty</code>. When you implement this module you associate this "existence"
+    with a concrete value, but as a user you can't access this information. Now, functions
+    that accept this <code>Proof.t</code> don't actually care about the internals
+    of the value but the fact that you can produce one &mdash; in a similar vein
+    to how you did not care about how I brought an elf to our meeting, only that
+    they are in the flesh.
+  </p>
 
-<pre><code class="language-ocaml">
+  <pre><code class="language-ocaml">
 (* This function now requires you to present a Proof.t value when you call it. *)
 let remove_toys (_proof : Proof.t) (p : perpetrator) = remove (find_room p)
 
@@ -164,15 +177,15 @@ let () =
     | None -> Format.printf "not guilty!\n"
 </code></pre>
 
-<p>
-  The fact that you cannot peer into the module and see how it works is precisely
-  that which prevents you from creating fake testimonies and bypassing the safeguards
-  that you put in place to begin with. Most importantly, you can rest assured
-  within the body of the function that the suspect is guilty and go ham!
-</p>
+  <p>
+    The fact that you cannot peer into the module and see how it works is precisely
+    that which prevents you from creating fake testimonies and bypassing the safeguards
+    that you put in place to begin with. Most importantly, you can rest assured
+    within the body of the function that the suspect is guilty and go ham!
+  </p>
 
-<p>
-  In summary,
+  <p>
+    In summary,
   <ol>
     <li>There is an operation that should only be performed under certain conditions.</li>
     <li>You define a structure that can only be minted by verifying these conditions.</li>
@@ -180,18 +193,20 @@ let () =
       ensure you never call this function without verification.
     </li>
   </ol>
-</p>
+  </p>
 
-<h3>(*** References ***)</h3>
+  <h3>(*** References ***)</h3>
 
-<ul>
-  <li>Crichton, Will. “Typed Design Patterns for the Functional Era.” Proceedings of the 1st ACM SIGPLAN International Workshop on Functional Software Architecture, August 30, 2023, 40-48. <a href="https://doi.org/10.1145/3609025.3609477">DOI</a>
-  </li>
-  <li>
-    Pierce, Benjamin C. "Existential Types" Types and Programming Languages, 363 - 77. Cambridge: The MIT Press, 2019.
-  </li>
-</ul>
+  <ul>
+    <li>Crichton, Will. “Typed Design Patterns for the Functional Era.” Proceedings of the 1st ACM SIGPLAN International
+      Workshop on Functional Software Architecture, August 30, 2023, 40-48. <a
+        href="https://doi.org/10.1145/3609025.3609477">DOI</a>
+    </li>
+    <li>
+      Pierce, Benjamin C. "Existential Types" Types and Programming Languages, 363 - 77. Cambridge: The MIT Press, 2019.
+    </li>
+  </ul>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/ocaml.min.js"></script>
-<script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/ocaml.min.js"></script>
+  <script>hljs.highlightAll();</script>
